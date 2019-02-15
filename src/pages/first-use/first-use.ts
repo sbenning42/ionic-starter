@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavProvider } from '../../providers/nav/nav';
+import { RouteLinkPageId } from '../../models/route-link';
 
 /**
  * Generated class for the FirstUsePage page.
@@ -15,11 +17,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FirstUsePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public navProvider: NavProvider
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FirstUsePage');
+  }
+
+  getStarted() {
+    this.navProvider.setRoot(RouteLinkPageId.welcome);
   }
 
 }

@@ -51,13 +51,13 @@ export const routes: RouteLinks = [
             show: true,
             idx: 1,
             name: 'SETTINGS',
-            icon: 'informations-circle'
+            icon: 'information-circle'
         },
         tabs: {
             show: true,
             idx: 1,
             name: 'SETTINGS',
-            icon: 'informations-circle'
+            icon: 'information-circle'
         }
     },
 ];

@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RouteLinks, RouteLink } from '../../models/route-link';
+import { RouteLinks, RouteLink, RouteLinkPageId } from '../../models/route-link';
 import { App, Tabs, MenuController } from 'ionic-angular';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { RouteLinkPageId } from '../../app/app.routes';
 
 /*
   Generated class for the NavProvider provider.
@@ -69,7 +67,7 @@ export class NavProvider {
 
   select(id: string) {
     const route = NavProvider.routes.find((innerRoute: RouteLink) => innerRoute.id === id);
-    if (!(NavProvider.tabs && route && route.tabs && route.tabs.idx)) {
+    if (!(NavProvider.tabs && route && route.tabs && (route.tabs.idx !== -1))) {
       return ;
     }
     NavProvider.tabs.select(route.tabs.idx);

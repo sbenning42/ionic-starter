@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Tabs } from 'ionic-angular';
 import { NavProvider } from '../../providers/nav/nav';
 import { Observable } from 'rxjs';
 import { RouteLinks } from '../../models/route-link';
+import { tap } from 'rxjs/operators';
 
 /**
  * Generated class for the TabsPage page.
@@ -18,7 +19,13 @@ import { RouteLinks } from '../../models/route-link';
 })
 export class TabsPage {
 
-  routes$: Observable<RouteLinks>/* = this.navProvider.routes$*/;
+  @ViewChild(Tabs) tabs: Tabs;
+
+  routes$: Observable<RouteLinks> = this.navProvider.routes$.pipe(
+    tap(() => setTimeout(() => {
+      NavProvider.forTabs(this.tabs);
+    }, 0))
+  );
 
   constructor(
     public navCtrl: NavController,

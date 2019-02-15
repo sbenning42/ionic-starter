@@ -2,21 +2,21 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { FirstUsePage } from '../pages/first-use/first-use';
 import { Observable } from 'rxjs';
 import { RouteLinks, RouteLink } from '../models/route-link';
 import { NavProvider } from '../providers/nav/nav';
 import { TabsPage } from '../pages/tabs/tabs';
+import { tap } from 'rxjs/operators';
+import { FirstUsePage } from '../pages/first-use/first-use';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
-  rootPage: any;
-
-  routes$: Observable<RouteLinks>;
+  
+  rootPage: any = FirstUsePage;
+  routes$: Observable<RouteLinks> = this.navProvider.routes$;
 
   constructor(
     public platform: Platform,
@@ -25,10 +25,6 @@ export class MyApp {
     public navProvider: NavProvider
   ) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.routes$ = this.navProvider.routes$;
-
   }
 
   initializeApp() {
@@ -38,8 +34,6 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.navProvider.menuEnabled = false;
-      console.log(this.navProvider);
-      // this.rootPage = TabsPage;
     });
   }
 

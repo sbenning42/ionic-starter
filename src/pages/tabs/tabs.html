@@ -8,7 +8,7 @@
     <ion-tabs>
       <ng-container *ngFor="let route of routes">
         <ng-container *ngIf="route.tabs">
-            <ion-tab [show]="route.tabs.show" [tabTitle]="route.tabs.name" [tabIcon]="route.tabs.icon"></ion-tab>
+            <ion-tab [show]="route.tabs.show" [root]="route.page" [tabTitle]="route.tabs.name" [tabIcon]="route.tabs.icon"></ion-tab>
         </ng-container>
       </ng-container>
     </ion-tabs>

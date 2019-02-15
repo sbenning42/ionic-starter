@@ -39,7 +39,7 @@ import { routes } from './app.routes';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NavProvider
+    NavProvider.forRoot(routes)
   ]
 })
 export class AppModule {}

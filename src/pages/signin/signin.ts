@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavProvider } from '../../providers/nav/nav';
+import { RouteLinkPageId } from '../../models/route-link';
 
 /**
  * Generated class for the SigninPage page.
@@ -15,11 +17,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SigninPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public navProvider: NavProvider
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SigninPage');
+  }
+
+  signin() {
+    this.navProvider.setRoot(RouteLinkPageId.tabs);
   }
 
 }
