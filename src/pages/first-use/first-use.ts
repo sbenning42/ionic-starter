@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NavProvider } from '../../providers/nav/nav';
 import { RouteLinkPageId } from '../../models/route-link';
+import { StorageProvider } from '../../providers/storage/storage';
+import { EntryName } from '../../models/entry';
 
 /**
  * Generated class for the FirstUsePage page.
@@ -20,7 +22,8 @@ export class FirstUsePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public navProvider: NavProvider
+    public navProvider: NavProvider,
+    public storageProvider: StorageProvider
   ) {
   }
 
@@ -29,7 +32,9 @@ export class FirstUsePage {
   }
 
   getStarted() {
-    this.navProvider.setRoot(RouteLinkPageId.welcome);
+    this.storageProvider.save([{ key: EntryName.firstUse, value: false }]).subscribe(() => {
+      this.navProvider.setRoot(RouteLinkPageId.welcome);
+    });
   }
 
 }
